@@ -79,7 +79,7 @@ button:hover{background:#c2185b}
 <div class="game-box" id="memoryBoard"></div>
 </div>
 
-<!-- المرحلة 6 - لعبة تركيب اسم الدلع -->
+<!-- المرحلة 6 - لعبة تركيب اسم الدلع (اللعبة الجديدة رقم 5) -->
 <div class="card hidden" id="stage6">
 <h1>💖 المرحلة 5 - فككي واجمعي اسم الدلع</h1>
 <p>رتبي الحروف التالية لتكتبي كلمة دلالك عندي: <b>( ي و ر ح ي )</b> معكوسة أو مبعثرة</p>
@@ -98,7 +98,6 @@ button:hover{background:#c2185b}
   <button onclick="checkLock(true)">مفتاح مها وفارس 🔐</button>
   <button onclick="checkLock(false)">مفتاح الروح ✨</button>
 </div>
-<p id="lockErr" style="color:red;font-size:14px;margin-top:10px;"></p>
 </div>
 
 <!-- المرحلة 8 - النهاية والرسالة الشعرية -->
@@ -130,7 +129,7 @@ const QUESTIONS = [
   { q: "وين أول مرة حكينا فيها؟", opts: ["واتساب", "انستا", "لعبة بلوم مان غو", "بالحارة"], ans: 2 },
   { q: "شو أكثر أكلة بحبها؟", opts: ["شاورما", "الرز بحليب", "مندي", "بيتزا"], ans: 1 },
   { q: "شو لقبي اللي بتحبي تناديلي فيه؟", opts: ["أبو أهل العلم والنظارات", "فارس", "حبيبي", "يلوحي (يروحي)"], ans: 0 },
-  { q: "متى تاريخ ميلادي؟ (اكتبي بالشكل التالي: 16/6/2009)", type: "text", ans: "16/6/2009" }
+  { q: "متى تاريخ ميلادي؟ (اكتبي بالشكل التالي: 2009/6/16)", type: "text", ans: "2009/6/16" }
 ];
 
 function checkPass(){
@@ -184,7 +183,7 @@ function checkTextAnswer(){
     qi++;
     showQ();
   } else {
-    alert("التاريخ غلط يا قلبي! تذكري (16/6/2009) ❤️ جربي تاني");
+    alert("التاريخ غلط يا قلبي! تذكري (2009/6/16) ❤️ جربي تاني");
   }
 }
 
@@ -279,6 +278,7 @@ function initMemoryGame(){
     card.dataset.icon = icon;
     card.innerText = '❓';
     card.onclick = () => flipCard(card);
+    board.board = board;
     board.appendChild(card);
   });
 }
@@ -313,7 +313,7 @@ function flipCard(card){
   }
 }
 
-// لعبة تركيب كلمة "يروحي"
+// لعبة تركيب كلمة "يروحي" (اللعبة الجديدة)
 const correctWordLetters = ["ي", "ر", "و", "ح", "ي"];
 let currentUserLetters = [];
 
@@ -356,19 +356,13 @@ function resetScramble(){
   initScrambleGame();
 }
 
-// لعبة المفتاح (مع تنبيه بالمفتاح الصح عند أول غلطة)
-let lockAttempts = 0;
+// لعبة المفتاح
 function checkLock(isCorrect){
   if(isCorrect){
     document.getElementById('stage7').classList.add('hidden');
     document.getElementById('stage8').classList.remove('hidden');
   } else {
-    lockAttempts++;
-    if(lockAttempts === 1){
-      document.getElementById('lockErr').innerText = "💡 تلميح: المفتاح الصح هو (مفتاح مها وفارس 🔐) يا عيوني!";
-    } else {
-      document.getElementById('lockErr').innerText = "يلا اضطريتي تختاري (مفتاح مها وفارس 🔐) 😉";
-    }
+    alert("مفتاح غلط! جربي خيار ثاني بيفتح قلب فارسك 😉❤️");
   }
 }
 </script>
